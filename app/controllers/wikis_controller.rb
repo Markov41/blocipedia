@@ -2,6 +2,8 @@ class WikisController < ApplicationController
   
   skip_before_action :authenticate_user!
   
+  
+  
   def index
     @wikis = Wiki.all
   end
@@ -37,8 +39,9 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
-
-    if @wiki.save
+    authorize @wiki
+    if 
+      @wiki.update(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
@@ -60,6 +63,11 @@ class WikisController < ApplicationController
     end
     
   end
+  
+  def wiki_params
+    params.require(:wiki).permit(:title, :body, :private)
+  end
+    
       
   
 end
