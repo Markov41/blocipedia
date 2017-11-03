@@ -12,7 +12,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present?
+    user.present? || user.admin?
   end
   
   def create?
