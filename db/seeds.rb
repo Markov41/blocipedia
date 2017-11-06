@@ -3,8 +3,8 @@ require 'faker'
  100.times do
   Wiki.create!(
    
-   title: Faker::StarWars.unique.character,
-   body: Faker::Zelda.unique.location
+   title: Faker::StarWars.character,
+   body: Faker::Zelda.location
    )
  end
  wiki = Wiki.all

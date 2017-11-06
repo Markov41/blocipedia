@@ -11,6 +11,8 @@
  group :production do
    # Use pg as the production database for Active Record
    gem 'pg'
+   gem 'rails_12factor'
+   
  end
  
  group :development do
@@ -38,6 +40,8 @@
  # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
  gem 'jbuilder', '~> 2.5'
  
+ gem 'stripe'
+ 
  gem 'thor', '0.19.1'
  
  gem 'bootstrap-sass'
@@ -47,6 +51,9 @@
  gem "pundit"
  
  gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+ 
+ gem 'figaro', '1.0'
+ 
  
  group :development do
    gem 'listen', '~> 3.0.5'
