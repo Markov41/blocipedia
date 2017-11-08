@@ -10,6 +10,11 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    
+    if @wiki.private && current_user.standard?
+      flash[:alert] = "You must be a premium user to view this wiki."
+      redirect_to root_path
+    end
   end
 
   def new
@@ -24,6 +29,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:body]
     
     if @wiki.save
       flash[:notice] = "Wiki was saved."
@@ -39,6 +45,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:body]
     authorize @wiki
     if 
       @wiki.update(wiki_params)
@@ -63,6 +70,8 @@ class WikisController < ApplicationController
     end
     
   end
+  
+  private
   
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private)
