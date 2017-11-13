@@ -54,6 +54,10 @@
  
  gem 'figaro', '1.0'
  
+ gem 'redcarpet'
+ 
+ gem 'coderay'
+ 
  
  group :development do
    gem 'listen', '~> 3.0.5'
