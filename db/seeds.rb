@@ -20,6 +20,7 @@ require 'faker'
  
  
  
+ 
  puts "Faker Seeds Finished"
  puts "#{Wiki.count} wikis created with Faker"
  puts "#{User.count} users created with Faker"
